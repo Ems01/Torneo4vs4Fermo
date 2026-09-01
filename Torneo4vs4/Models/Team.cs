@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Torneo4vs4.Models;
 
-namespace Torneo4vs4.Models
+// Rappresenta una squadra partecipante al torneo.
+public class Team
 {
-    internal class Team
-    {
-    }
+    public int Id { get; set; }
+
+    public string Name { get; set; } = string.Empty;
 }

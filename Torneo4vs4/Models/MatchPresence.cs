@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Torneo4vs4.Models;
 
-namespace Torneo4vs4.Models
+// Rappresenta la presenza o l'assenza di un giocatore in una determinata partita.
+public class MatchPresence
 {
-    internal class MatchPresence
-    {
-    }
+    public int Id { get; set; }
+    public int MatchId { get; set; }
+    public int PlayerId { get; set; }
+    public bool IsPresent { get; set; }
 }

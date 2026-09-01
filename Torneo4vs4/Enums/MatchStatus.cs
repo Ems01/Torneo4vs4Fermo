@@ -1,10 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Torneo4vs4.Enums;
 
-namespace Torneo4vs4.Enums
+// Definisce tutti i possibili stati in cui può trovarsi una partita.
+public enum MatchStatus
 {
-    internal class MatchStatus
-    {
-    }
+    // La partita è programmata ma non è ancora iniziata.
+    Scheduled,
+
+    // La partita è attualmente in corso.
+    InProgress,
+
+    // La partita è terminata e i dati sono stati confermati.
+    Finished
 }
