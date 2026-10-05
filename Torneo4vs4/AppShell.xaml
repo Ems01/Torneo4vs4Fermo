@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8" ?>
+
 <Shell
     x:Class="Torneo4vs4.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Torneo4vs4"
-    Title="Torneo4vs4">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    xmlns:matches="clr-namespace:Torneo4vs4.Views.Matches"
+    xmlns:standings="clr-namespace:Torneo4vs4.Views.Standings"
+    xmlns:scorers="clr-namespace:Torneo4vs4.Views.Scorers"
+    xmlns:teams="clr-namespace:Torneo4vs4.Views.Teams"
+    xmlns:rules="clr-namespace:Torneo4vs4.Views.Rules"
+
+    FlyoutBehavior="Disabled">
+
+    <TabBar>
+
+        <ShellContent
+            Title="Incontri"
+            Route="Matches"
+            ContentTemplate="{DataTemplate matches:MatchesPage}" />
+
+        <ShellContent
+            Title="Classifica"
+            Route="Standings"
+            ContentTemplate="{DataTemplate standings:StandingsPage}" />
+
+        <ShellContent
+            Title="Marcatori"
+            Route="Scorers"
+            ContentTemplate="{DataTemplate scorers:ScorersPage}" />
+
+        <ShellContent
+            Title="Squadre"
+            Route="Teams"
+            ContentTemplate="{DataTemplate teams:TeamsPage}" />
+
+        <ShellContent
+            Title="Regolamento"
+            Route="Rules"
+            ContentTemplate="{DataTemplate rules:RulesPage}" />
+
+    </TabBar>
 
 </Shell>

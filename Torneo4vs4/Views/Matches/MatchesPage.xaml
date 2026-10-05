@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Torneo4vs4.Views.Matches.MatchesPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Torneo4vs4.ViewModels"
+
+    Title="Incontri"
+    BackgroundColor="#F4F4F4">
+
+    <Grid
+        Padding="16"
+        RowDefinitions="Auto,Auto,*">
+
+        <!-- Titolo -->
+        <Label
+            Grid.Row="0"
+            Text="INCONTRI"
+            FontSize="30"
+            FontAttributes="Bold"
+            Margin="4,10,4,16" />
+
+        <!-- Indicatore di caricamento -->
+        <ActivityIndicator
+            Grid.Row="1"
+            IsVisible="{Binding IsLoading}"
+            IsRunning="{Binding IsLoading}"
+            HorizontalOptions="Center"
+            Margin="0,0,0,10" />
+
+        <!-- Lista partite -->
+        <CollectionView
+            Grid.Row="2"
+            ItemsSource="{Binding Matches}"
+            SelectionMode="None">
+
+            <CollectionView.EmptyView>
+
+                <VerticalStackLayout
+                    Padding="20"
+                    Spacing="10"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center">
+
+                    <Label
+                        Text="Nessun incontro disponibile"
+                        FontSize="18"
+                        FontAttributes="Bold"
+                        HorizontalTextAlignment="Center" />
+
+                    <Label
+                        Text="Le partite del torneo compariranno qui."
+                        HorizontalTextAlignment="Center" />
+
+                </VerticalStackLayout>
+
+            </CollectionView.EmptyView>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate
+                    x:DataType="viewModels:MatchListItemViewModel">
+
+                    <Border
+                        BackgroundColor="White"
+                        Stroke="#DDDDDD"
+                        StrokeThickness="1"
+                        Padding="16"
+                        Margin="0,0,0,14">
+
+                        <Border.StrokeShape>
+
+                            <RoundRectangle
+                                CornerRadius="16" />
+
+                        </Border.StrokeShape>
+
+                        <Grid
+                            RowDefinitions="Auto,Auto,Auto"
+                            ColumnDefinitions="*,Auto,*"
+                            RowSpacing="10">
+
+                            <!-- Data -->
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Text="{Binding DateText}"
+                                HorizontalTextAlignment="Center"
+                                FontSize="13"
+                                TextColor="#666666" />
+
+                            <!-- Squadra casa -->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Text="{Binding HomeTeamName}"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center" />
+
+                            <!-- Risultato / Ora / In corso -->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="1"
+                                Text="{Binding ResultText}"
+                                FontSize="20"
+                                FontAttributes="Bold"
+                                Margin="18,0"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center" />
+
+                            <!-- Squadra ospite -->
+                            <Label
+                                Grid.Row="1"
+                                Grid.Column="2"
+                                Text="{Binding AwayTeamName}"
+                                FontSize="18"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                VerticalTextAlignment="Center" />
+
+                            <!-- Stato -->
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3"
+                                Text="{Binding StatusText}"
+                                FontSize="11"
+                                FontAttributes="Bold"
+                                TextColor="#777777"
+                                HorizontalTextAlignment="Center" />
+
+                        </Grid>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <!-- Eventuale errore -->
+        <Border
+            Grid.Row="2"
+            IsVisible="{Binding HasError}"
+            BackgroundColor="#FFF0F0"
+            Stroke="#D00000"
+            Padding="15"
+            VerticalOptions="Start">
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="#A00000" />
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

@@ -1,17 +1,15 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿namespace Torneo4vs4;
 
-namespace Torneo4vs4
+public partial class App : Application
 {
-    public partial class App : Application
+    public App()
     {
-        public App()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+    }
 
-        protected override Window CreateWindow(IActivationState? activationState)
-        {
-            return new Window(new AppShell());
-        }
+    protected override Window CreateWindow(
+        IActivationState? activationState)
+    {
+        return new Window(new AppShell());
     }
 }

@@ -1,10 +1,9 @@
-﻿namespace Torneo4vs4
+﻿namespace Torneo4vs4;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
     }
 }

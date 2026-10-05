@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Torneo4vs4.Views.Teams.TeamsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:models="clr-namespace:Torneo4vs4.Models"
+    xmlns:viewModels="clr-namespace:Torneo4vs4.ViewModels"
+
+    Title="Squadre"
+    BackgroundColor="#F4F4F4">
+
+    <Grid
+        Padding="16"
+        RowDefinitions="Auto,Auto,*">
+
+        <Label
+            Grid.Row="0"
+            Text="SQUADRE"
+            FontSize="30"
+            FontAttributes="Bold"
+            Margin="4,10,4,16" />
+
+        <ActivityIndicator
+            Grid.Row="1"
+            IsVisible="{Binding IsLoading}"
+            IsRunning="{Binding IsLoading}"
+            HorizontalOptions="Center"
+            Margin="0,0,0,10" />
+
+        <CollectionView
+            Grid.Row="2"
+            ItemsSource="{Binding Teams}"
+            IsGrouped="True"
+            SelectionMode="None">
+
+            <CollectionView.GroupHeaderTemplate>
+
+                <DataTemplate
+                    x:DataType="viewModels:TeamGroupViewModel">
+
+                    <Grid
+                        Padding="6,18,6,10"
+                        ColumnDefinitions="*,Auto">
+
+                        <Label
+                            Text="{Binding TeamName}"
+                            FontSize="23"
+                            FontAttributes="Bold" />
+
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding PlayerCount, StringFormat='{0} giocatori'}"
+                            VerticalTextAlignment="Center"
+                            TextColor="#777777"
+                            FontSize="13" />
+
+                    </Grid>
+
+                </DataTemplate>
+
+            </CollectionView.GroupHeaderTemplate>
+
+            <CollectionView.ItemTemplate>
+
+                <DataTemplate
+                    x:DataType="models:Player">
+
+                    <Border
+                        BackgroundColor="White"
+                        Stroke="#DDDDDD"
+                        StrokeThickness="1"
+                        Padding="16"
+                        Margin="0,0,0,8">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="12" />
+                        </Border.StrokeShape>
+
+                        <Label
+                            FontSize="17">
+
+                            <Label.FormattedText>
+
+                                <FormattedString>
+
+                                    <Span
+                                        Text="{Binding LastName}"
+                                        FontAttributes="Bold" />
+
+                                    <Span Text=" " />
+
+                                    <Span
+                                        Text="{Binding FirstName}" />
+
+                                </FormattedString>
+
+                            </Label.FormattedText>
+
+                        </Label>
+
+                    </Border>
+
+                </DataTemplate>
+
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <Border
+            Grid.Row="2"
+            IsVisible="{Binding HasError}"
+            BackgroundColor="#FFF0F0"
+            Stroke="#D00000"
+            Padding="15"
+            VerticalOptions="Start">
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="#A00000" />
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>
