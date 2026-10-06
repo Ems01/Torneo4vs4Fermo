@@ -81,7 +81,7 @@
 	  <MauiXaml Update="Views\Scorers\ScorersPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\Standings\Standings.xaml">
+	  <MauiXaml Update="Views\Standings\StandingsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Teams\TeamsPage.xaml">

@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage
+    x:Class="Torneo4vs4.Views.Standings.StandingsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Torneo4vs4.ViewModels"
+    Title="Classifica"
+    BackgroundColor="#F4F4F4">
+
+    <Grid
+        Padding="12"
+        RowDefinitions="Auto,Auto,*,Auto">
+
+        <!-- TITOLO -->
+        <Label
+            Grid.Row="0"
+            Text="CLASSIFICA"
+            FontSize="30"
+            FontAttributes="Bold"
+            Margin="4,10,4,16" />
+
+        <!-- CARICAMENTO -->
+        <ActivityIndicator
+            Grid.Row="1"
+            IsVisible="{Binding IsLoading}"
+            IsRunning="{Binding IsLoading}"
+            HorizontalOptions="Center"
+            Margin="0,0,0,10" />
+
+        <!-- TABELLA -->
+        <ScrollView
+            Grid.Row="2"
+            Orientation="Horizontal"
+            HorizontalScrollBarVisibility="Default">
+
+            <!--
+                Larghezza maggiore dello schermo
+                per consentire lo scroll orizzontale.
+            -->
+            <Grid
+                WidthRequest="650"
+                RowDefinitions="Auto,*">
+
+                <!-- ============================= -->
+                <!-- INTESTAZIONE -->
+                <!-- ============================= -->
+
+                <Border
+                    Grid.Row="0"
+                    BackgroundColor="#E8E8E8"
+                    StrokeThickness="0"
+                    Padding="8,12">
+
+                    <Grid
+                        ColumnDefinitions="35,145,40,40,40,40,40,40,45,45,45,45">
+
+                        <Label
+                            Grid.Column="0"
+                            Text="#"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="1"
+                            Text="Squadra"
+                            FontAttributes="Bold"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="2"
+                            Text="PG"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="3"
+                            Text="V"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="4"
+                            Text="N"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="5"
+                            Text="P"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <!-- GIALLO -->
+                        <Label
+                            Grid.Column="6"
+                            Text="G"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <!-- ROSSO -->
+                        <Label
+                            Grid.Column="7"
+                            Text="R"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="8"
+                            Text="GF"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="9"
+                            Text="GS"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="10"
+                            Text="DR"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <Label
+                            Grid.Column="11"
+                            Text="PT"
+                            FontAttributes="Bold"
+                            HorizontalTextAlignment="Center"
+                            VerticalTextAlignment="Center" />
+
+                    </Grid>
+
+                </Border>
+
+                <!-- ============================= -->
+                <!-- RIGHE CLASSIFICA -->
+                <!-- ============================= -->
+
+                <CollectionView
+                    Grid.Row="1"
+                    ItemsSource="{Binding Standings}"
+                    SelectionMode="None">
+
+                    <CollectionView.ItemTemplate>
+
+                        <DataTemplate
+                            x:DataType="viewModels:StandingRowViewModel">
+
+                            <Border
+                                BackgroundColor="White"
+                                Stroke="#E0E0E0"
+                                StrokeThickness="1"
+                                Padding="8,14">
+
+                                <Grid
+                                    ColumnDefinitions="35,145,40,40,40,40,40,40,45,45,45,45">
+
+                                    <!-- POSIZIONE -->
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="{Binding Position}"
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- SQUADRA -->
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding TeamName}"
+                                        FontAttributes="Bold"
+                                        LineBreakMode="TailTruncation"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- PARTITE GIOCATE -->
+                                    <Label
+                                        Grid.Column="2"
+                                        Text="{Binding Played}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- VITTORIE -->
+                                    <Label
+                                        Grid.Column="3"
+                                        Text="{Binding Wins}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- PAREGGI -->
+                                    <Label
+                                        Grid.Column="4"
+                                        Text="{Binding Draws}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- SCONFITTE -->
+                                    <Label
+                                        Grid.Column="5"
+                                        Text="{Binding Losses}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- GIALLI -->
+                                    <Label
+                                        Grid.Column="6"
+                                        Text="{Binding YellowCards}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- ROSSI -->
+                                    <Label
+                                        Grid.Column="7"
+                                        Text="{Binding RedCards}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- GOL FATTI -->
+                                    <Label
+                                        Grid.Column="8"
+                                        Text="{Binding GoalsFor}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- GOL SUBITI -->
+                                    <Label
+                                        Grid.Column="9"
+                                        Text="{Binding GoalsAgainst}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- DIFFERENZA RETI -->
+                                    <Label
+                                        Grid.Column="10"
+                                        Text="{Binding GoalDifferenceText}"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                    <!-- PUNTI -->
+                                    <Label
+                                        Grid.Column="11"
+                                        Text="{Binding Points}"
+                                        FontAttributes="Bold"
+                                        HorizontalTextAlignment="Center"
+                                        VerticalTextAlignment="Center" />
+
+                                </Grid>
+
+                            </Border>
+
+                        </DataTemplate>
+
+                    </CollectionView.ItemTemplate>
+
+                </CollectionView>
+
+            </Grid>
+
+        </ScrollView>
+
+        <!-- ============================= -->
+        <!-- ERRORE -->
+        <!-- ============================= -->
+
+        <Border
+            Grid.Row="3"
+            IsVisible="{Binding HasError}"
+            BackgroundColor="#FFF0F0"
+            Stroke="#D00000"
+            StrokeThickness="1"
+            Padding="15"
+            Margin="0,10,0,0">
+
+            <Label
+                Text="{Binding ErrorMessage}"
+                TextColor="#A00000" />
+
+        </Border>
+
+    </Grid>
+
+</ContentPage>

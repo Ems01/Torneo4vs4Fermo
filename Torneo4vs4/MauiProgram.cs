@@ -34,6 +34,18 @@ namespace Torneo4vs4
 
             builder.Services.AddTransient<TeamsViewModel>();
 
+            builder.Services.AddSingleton<MatchEventService>();
+
+            builder.Services.AddTransient<StandingsViewModel>();
+
+            builder.Services.AddSingleton<MatchPresenceService>();
+
+            builder.Services.AddTransient<ScorersViewModel>();
+
+            builder.Services.AddSingleton<RuleService>();
+
+            builder.Services.AddTransient<RulesViewModel>();
+
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

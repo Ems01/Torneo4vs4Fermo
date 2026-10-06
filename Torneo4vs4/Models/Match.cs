@@ -2,6 +2,7 @@
 using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 using Torneo4vs4.Enums;
+using MatchTypeEnum = Torneo4vs4.Enums.MatchType;
 
 namespace Torneo4vs4.Models;
 
@@ -29,6 +30,10 @@ public class Match : BaseModel
     [Column("status")]
     [JsonConverter(typeof(JsonStringEnumConverter))]
     public MatchStatus Status { get; set; }
+
+    [Column("match_type")]
+    [JsonConverter(typeof(JsonStringEnumConverter))]
+    public MatchTypeEnum MatchType { get; set; }
 
     [Column("referee1")]
     public string? Referee1 { get; set; }
